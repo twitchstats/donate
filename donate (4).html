@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GRISHATRIPAK | Донат</title>
+    
+    <!-- Подключаем шрифт -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <!-- Подключаем иконки FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #ffffff;
+            overflow-x: hidden;
+            padding: 40px 20px;
+            background-color: #0a0a0c; /* видно, пока гифка грузится */
+        }
+
+        /* Гифка на весь экран — через img, стабильнее чем background-image на мобильных */
+        .bg-gif {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+        }
+
+        /* Темное затемнение поверх гифки, чтобы кнопки легко читались */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 10, 12, 0.6); /* Полупрозрачный черный цвет */
+            backdrop-filter: blur(2px); /* Легкое размытие, можно убрать (поставить 0px) */
+            z-index: -1;
+        }
+
+        /* Главный контейнер */
+        .profile-container {
+            width: 100%;
+            max-width: 380px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 1;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Имя (Заголовок) */
+        .username {
+            font-size: 24px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+        }
+
+        /* Контейнер для ссылок */
+        .links-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        /* Стили кнопок */
+        .link-btn {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            min-height: 55px;
+            padding: 15px 20px;
+            background-color: rgba(26, 26, 26, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            color: #ffffff;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .link-btn:hover {
+            background-color: rgba(45, 45, 45, 0.95);
+            transform: scale(1.02);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Иконка слева */
+        .link-btn i {
+            position: absolute;
+            left: 20px;
+            font-size: 20px;
+            color: #e5e5e5;
+        }
+
+        /* Текст по центру */
+        .btn-text {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-title {
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        /* Описание для AI кнопки */
+        .btn-subtitle {
+            font-size: 11px;
+            font-weight: 400;
+            color: #a1a1aa;
+            margin-top: 4px;
+        }
+
+        /* Выделение AI кнопки */
+        .ai-btn {
+            border: 1px solid rgba(138, 43, 226, 0.4);
+            background-color: rgba(26, 26, 26, 0.95);
+        }
+        
+        .ai-btn i {
+            color: #a855f7; 
+        }
+
+        .ai-btn:hover {
+            border-color: rgba(138, 43, 226, 0.8);
+            box-shadow: 0 0 15px rgba(138, 43, 226, 0.2);
+        }
+
+        /* Выделение крипто-кнопки DonatePay */
+        .crypto-btn {
+            border: 1px solid rgba(247, 147, 26, 0.4);
+            background-color: rgba(26, 26, 26, 0.95);
+        }
+
+        .crypto-btn i {
+            color: #f7931a;
+        }
+
+        .crypto-btn:hover {
+            border-color: rgba(247, 147, 26, 0.8);
+            box-shadow: 0 0 15px rgba(247, 147, 26, 0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Фоновая гифка -->
+    <img class="bg-gif" src="https://i.ibb.co/d4PFwjX3/vly5qd.gif" alt="">
+
+    <!-- Затемнение фона -->
+    <div class="overlay"></div>
+
+    <div class="profile-container">
+        <!-- Заголовок -->
+        <h1 class="username">GRISHATRIPAK</h1>
+
+        <div class="links-container">
+            
+            <!-- Кнопка 1: DonateX (AI) -->
+            <a href="https://donatex.gg/donate/grishatripak" target="_blank" class="link-btn ai-btn">
+                <i class="fa-solid fa-robot"></i>
+                <div class="btn-text">
+                    <span class="btn-title">Донат (DonateX)</span>
+                    <span class="btn-subtitle">AI озвучка + музыка за донат</span>
+                </div>
+            </a>
+
+            <!-- Кнопка 2: DonationAlerts -->
+            <a href="https://www.donationalerts.com/r/grishatripak" target="_blank" class="link-btn">
+                <i class="fa-solid fa-heart"></i>
+                <div class="btn-text">
+                    <span class="btn-title">DonationAlerts</span>
+                    <span class="btn-subtitle">Донат + музыка за донат</span>
+                </div>
+            </a>
+
+            <!-- Кнопка 3: DonatePay (крипта) -->
+            <a href="https://new.donatepay.ru/@1153520" target="_blank" class="link-btn crypto-btn">
+                <i class="fa-brands fa-bitcoin"></i>
+                <div class="btn-text">
+                    <span class="btn-title">DonatePay</span>
+                    <span class="btn-subtitle">Крипта + музыка за донат</span>
+                </div>
+            </a>
+
+        </div>
+    </div>
+
+</body>
+</html>
